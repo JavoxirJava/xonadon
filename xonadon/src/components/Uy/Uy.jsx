@@ -16,10 +16,11 @@ const Uy = () => {
     const byId = (id) => document.getElementById(id).value;
 
     useEffect(() => {
-        axios.get("http://185.217.131.79:3000/api/bino")
-            .then(res => {
-                setUy(res.data.data);
-            });
+        //     axios.get("https://houses-adminpanel.herokuapp.com/api/bino")
+        //         .then(res => {
+        //             setUy(res.data.data);
+        //             console.log(res.data.data);
+        //         });
     }, []);
 
     const saveUy = () => {
@@ -33,13 +34,22 @@ const Uy = () => {
             UmmumyKvadrati: byId("UmmumyKvadrati"),
             Tip: byId("Tip")
         }
-        console.log(obj);
-        axios.post("http://185.217.131.79:3000/api/bino", obj)
-            .then(() => {
-                toast.success("successfully saved!");
-            }).catch(() => {
-                toast.error("error");
-        });
+        setUy([...uy, obj]);
+        toast.success("successfully saved!");
+        openModal();
+
+        // axios.post("http://localhost:3000/api/bino", obj, {headers: {
+        //         "Access-Control-Allow-Origin": "*",
+        //         "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT",
+        //         "Access-Control-Max-Age": "3600",
+        //         "Access-Control-Allow-Headers": "Access-Control-Allow-Methods,Access-Control-Allow-Origin,x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN",
+        //         "Content-Type": 'application/json'
+        //     }})
+        //     .then(() => {
+        //         toast.success("successfully saved!");
+        //     }).catch(() => {
+        //         toast.error("error");
+        // });
     }
 
     return (
@@ -53,7 +63,7 @@ const Uy = () => {
 
                 <div className="obyekt-item__card">
                     <h2>Uylar</h2>
-                   <p onClick={openModal}>+</p>
+                    <p onClick={openModal}>+</p>
                 </div>
 
                 <Table bordered>

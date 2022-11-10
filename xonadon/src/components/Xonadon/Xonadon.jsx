@@ -15,10 +15,10 @@ const Xonadon = () => {
 
 
     useEffect(() => {
-        axios.get("http://185.217.131.79:3000/api/honadon")
-            .then(res => {
-                setXonadon(res.data.data);
-            });
+        // axios.get("http://185.217.131.79:3000/api/honadon")
+        //     .then(res => {
+        //         setXonadon(res.data.data);
+        //     });
     }, []);
 
     const byId = (id) => document.getElementById(id).value;
@@ -39,15 +39,18 @@ const Xonadon = () => {
             Etaji: byId("Etaji"),
             Tip: byId("Tip")
         }
+        openModal();
+        setXonadon([...xonadon, obj])
+        toast.success("successfully saved Honadon");
 
-        axios.post("http://185.217.131.79:3000/api/honadon", obj)
-            .then(() => {
-                console.log("success");
-                toast.success("successfully saved Honadon");
-            }).catch(() => {
-            console.log("error");
-            toast.error("error");
-        })
+        // axios.post("http://185.217.131.79:3000/api/honadon", obj)
+        //     .then(() => {
+        //         console.log("success");
+        //         toast.success("successfully saved Honadon");
+        //     }).catch(() => {
+        //     console.log("error");
+        //     toast.error("error");
+        // })
     }
     return (
         <div className='obyekt'>

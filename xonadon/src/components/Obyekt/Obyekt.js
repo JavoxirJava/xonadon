@@ -19,14 +19,18 @@ const Obyekt = () => {
             QurilishniBitirishSanasi: document.getElementById("QurilishniBitirishSanasi").value,
             Tip: document.getElementById("Tip").value
         }
-        axios.post("http://185.217.131.79:3000/api/object", obj)
-            .then(() => {
-                toast.success("successfully saved object");
-                console.log("success")
-            }).catch(() => {
-            console.log("error");
-            toast.error("error");
-        })
+        setObject([...objects, obj]);
+        openModal();
+        toast.success("successfully saved object");
+
+        // axios.post("http://185.217.131.79:3000/api/object", obj)
+        //     .then(() => {
+        //         toast.success("successfully saved object");
+        //         console.log("success")
+        //     }).catch(() => {
+        //     console.log("error");
+        //     toast.error("error");
+        // })
     }
 
     const openModal = () => {
@@ -34,10 +38,10 @@ const Obyekt = () => {
     }
 
     useEffect(() => {
-        axios.get("http://185.217.131.79:3000/api/object")
-            .then(res => {
-                setObject(res.data.data);
-            })
+        // axios.get("http://185.217.131.79:3000/api/object")
+        //     .then(res => {
+        //         setObject(res.data.data);
+        //     })
     }, []);
 
 
